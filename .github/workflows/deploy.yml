@@ -1,4 +1,4 @@
-name: Deploy Vite React App to GitHub Pages (pnpm)
+name: Deploy Vite React App to GitHub Pages with pnpm
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout source
         uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -24,9 +24,9 @@ jobs:
           cache: 'pnpm'
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
 
-      - name: Install dependencies
+      - name: Install dependencies with pnpm
         run: pnpm install
 
       - name: Build Vite app
